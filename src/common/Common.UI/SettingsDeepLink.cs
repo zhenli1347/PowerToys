@@ -23,6 +23,7 @@ namespace Common.UI
             FileExplorer,
             ShortcutGuide,
             VideoConference,
+            EnvironmentVariables,
         }
 
         private static string SettingsWindowNameToString(SettingsWindow value)
@@ -53,6 +54,8 @@ namespace Common.UI
                     return "ShortcutGuide";
                 case SettingsWindow.VideoConference:
                     return "VideoConference";
+                case SettingsWindow.EnvironmentVariables:
+                    return "EnvironmentVariables";
                 default:
                     {
                         return string.Empty;

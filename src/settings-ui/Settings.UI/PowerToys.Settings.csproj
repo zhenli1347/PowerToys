@@ -37,6 +37,8 @@
 
   <ItemGroup>
     <None Remove="OobeWindow.xaml" />
+    <None Remove="OOBE\Views\OobeEnvironmentVariables.xaml" />
+    <None Remove="Views\EnvironmentVariablesPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\codeAnalysis\StyleCop.json">
@@ -91,5 +93,11 @@
     <None Update="icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="OOBE\Views\OobeEnvironmentVariables.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\EnvironmentVariablesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

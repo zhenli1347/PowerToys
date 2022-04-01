@@ -404,6 +404,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Plugin.WindowWalker.UnitTests", "src\modules\launcher\Plugins\Microsoft.Plugin.WindowWalker.UnitTests\Microsoft.Plugin.WindowWalker.UnitTests.csproj", "{8FE5A5EE-1B59-401C-9FB3-B04ECD3E29C1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerToys.Settings", "src\settings-ui\Settings.UI\PowerToys.Settings.csproj", "{020A7474-3601-4160-A159-D7B70B77B15F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentVariables", "EnvironmentVariables\EnvironmentVariables.csproj", "{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1112,6 +1113,14 @@ Global
 		{020A7474-3601-4160-A159-D7B70B77B15F}.Release|x64.Build.0 = Release|x64
 		{020A7474-3601-4160-A159-D7B70B77B15F}.Release|x86.ActiveCfg = Release|x64
 		{020A7474-3601-4160-A159-D7B70B77B15F}.Release|x86.Build.0 = Release|x64
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Debug|x64.ActiveCfg = Debug|x64
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Debug|x64.Build.0 = Debug|x64
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Debug|x86.ActiveCfg = Debug|x64
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Debug|x86.Build.0 = Debug|x64
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Release|x64.ActiveCfg = Release|x64
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Release|x64.Build.0 = Release|x64
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Release|x86.ActiveCfg = Release|x64
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

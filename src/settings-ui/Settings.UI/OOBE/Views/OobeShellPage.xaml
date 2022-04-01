@@ -76,6 +76,14 @@
                     </muxc:NavigationViewItem.Icon>
                 </muxc:NavigationViewItem>
 
+                <muxc:NavigationViewItem x:Uid="Shell_EnvironmentVariables"
+                                       Tag="EnvironmentVariables">
+                    <muxc:NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"
+                                    ShowAsMonochrome="False" />
+                    </muxc:NavigationViewItem.Icon>
+                </muxc:NavigationViewItem>
+
                 <muxc:NavigationViewItem x:Uid="Shell_FancyZones"
                                        Tag="FancyZones">
                     <muxc:NavigationViewItem.Icon>
