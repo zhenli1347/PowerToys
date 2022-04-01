@@ -29,6 +29,10 @@
                 "modules\\ColorPicker\\ColorPickerUI.dll",
                 "modules\\ColorPicker\\ColorPickerUI.exe",
 
+                "modules\\EnvironmentVariables\\PowerToys.EnvironmentVariables.dll",
+                "modules\\EnvironmentVariables\\PowerToys.EnvironmentVariables.exe",
+                "modules\\EnvironmentVariables\\PowerToys.EnvironmentVariablesModuleInterface.dll",
+
                 "modules\\ColorPicker\\PowerToys.ColorPicker.dll",
                 "modules\\ColorPicker\\PowerToys.ColorPickerUI.dll",
                 "modules\\ColorPicker\\PowerToys.ColorPickerUI.exe",

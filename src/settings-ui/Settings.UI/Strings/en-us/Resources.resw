@@ -247,6 +247,10 @@
     <value>Color Picker</value>
     <comment>Product name: Navigation view item name for Color Picker</comment>
   </data>
+  <data name="Shell_EnvironmentVariables.Content" xml:space="preserve">
+    <value>Environment Variables</value>
+    <comment>Product name: Navigation view item name for Environment Variables</comment>
+  </data>
   <data name="Shell_KeyboardManager.Content" xml:space="preserve">
     <value>Keyboard Manager</value>
     <comment>Product name: Navigation view item name for Keyboard Manager</comment>
@@ -345,6 +349,9 @@
   </data>
   <data name="ColorPicker_ChangeCursor.Content" xml:space="preserve">
     <value>Change cursor when picking a color</value>
+  </data>
+  <data name="EnvironmentVariables.ModuleDescription" xml:space="preserve">
+    <value>Quick and simple environment variables app.</value>
   </data>
   <data name="PowerLauncher.ModuleDescription" xml:space="preserve">
     <value>A quick launcher that has additional capabilities without sacrificing performance.</value>
@@ -930,6 +937,9 @@
   <data name="ColorPicker.ModuleTitle" xml:space="preserve">
     <value>Color Picker</value>
   </data>
+  <data name="EnvironmentVariables.ModuleTitle" xml:space="preserve">
+    <value>Environment Variables</value>
+  </data>
   <data name="PowerLauncher.ModuleTitle" xml:space="preserve">
     <value>PowerToys Run</value>
   </data>
@@ -1114,6 +1124,18 @@ Made with 💗 by Microsoft and the PowerToys community.</value>
   <data name="KBM_KeysCannotBeRemapped.Text" xml:space="preserve">
     <value>Learn more about remapping limitations</value>
     <comment>This is a link that will discuss what is and is not possible for Keyboard manager to remap</comment>
+  </data>
+  <data name="EnvironmentVariables_LaunchButtonControl.Header" xml:space="preserve">
+    <value>Launch Environment Variables application</value>
+    <comment>launches the Environment Variables application</comment>
+  </data>
+  <data name="EnvironmentVariables_LaunchButtonControl.Description" xml:space="preserve">
+    <value>Set and manage your environment variables</value>
+    <comment>launches the Environment Variables application</comment>
+  </data>
+  <data name="EnvironmentVariables_LaunchButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Launch Environment Variables application</value>
+    <comment>launches the Environment Variables application</comment>
   </data>
   <data name="FancyZones_Editor_GroupSettings.Header" xml:space="preserve">
     <value>Editor</value>
@@ -1329,11 +1351,17 @@ Made with 💗 by Microsoft and the PowerToys community.</value>
   <data name="Launch_ColorPicker.Content" xml:space="preserve">
     <value>Launch Color Picker</value>
   </data>
+  <data name="Launch_EnvironmentVariables.Content" xml:space="preserve">
+    <value>Launch Environment Variables</value>
+  </data>
   <data name="Oobe_LearnMore.Text" xml:space="preserve">
     <value>Learn more about</value>
   </data>
   <data name="Oobe_ColorPicker.Description" xml:space="preserve">
     <value>Color Picker is a system-wide color selection tool for Windows that enables you to pick colors from any currently running application and automatically copies it in a configurable format to your clipboard.</value>
+  </data>
+  <data name="Oobe_EnvironmentVariables.Description" xml:space="preserve">
+    <value>TBD: Environment Variables enables you to manage your environment variables in nice and easy way.</value>
   </data>
   <data name="Oobe_FancyZones.Description" xml:space="preserve">
     <value>FancyZones is a window manager that makes it easy to create complex window layouts and quickly position windows into those layouts.</value>
@@ -1408,6 +1436,9 @@ From there, simply click on one of the supported files in the File Explorer and 
   <data name="Oobe_ImageResizer_HowToLaunch.Text" xml:space="preserve">
     <value>In File Explorer, **right-clicking one or more image files** and **clicking on Resize pictures** from the context menu.</value>
   </data>
+  <data name="Oobe_EnvironmentVariables_HowToLaunch.Text" xml:space="preserve">
+    <value>Open PowerToys Settings, navigate to Environment Variables tab and press **Launch Environment Variables** button.</value>
+  </data>
   <data name="Oobe_ImageResizer_TipsAndTricks.Text" xml:space="preserve">
     <value>Want a custom size? You can add them in the PowerToys Settings!</value>
   </data>
@@ -1447,6 +1478,9 @@ From there, simply click on one of the supported files in the File Explorer and 
   <data name="Oobe_ColorPicker.Title" xml:space="preserve">
     <value>Color Picker</value>
     <comment>Do not localize this string</comment>
+  </data>
+  <data name="Oobe_EnvironmentVariables.Title" xml:space="preserve">
+    <value>Environment Variables</value>
   </data>
   <data name="Oobe_FancyZones.Title" xml:space="preserve">
     <value>FancyZones</value>
@@ -1658,6 +1692,9 @@ From there, simply click on one of the supported files in the File Explorer and 
   <data name="LearnMore_ColorPicker.Text" xml:space="preserve">
     <value>Learn more about Color Picker</value>
     <comment>Color Picker is a product name, do not loc</comment>
+  </data>
+  <data name="LearnMore_EnvironmentVariables.Text" xml:space="preserve">
+    <value>Learn more about Environment Variables</value>
   </data>
   <data name="LearnMore_FancyZones.Text" xml:space="preserve">
     <value>Learn more about FancyZones</value>

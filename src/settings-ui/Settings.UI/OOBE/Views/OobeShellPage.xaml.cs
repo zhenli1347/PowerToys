@@ -29,6 +29,8 @@ namespace Microsoft.PowerToys.Settings.UI.OOBE.Views
             ColorPickerSharedEventCallback = implementation;
         }
 
+        public static Func<string> EnvironmentVariablesSharedEventCallback { get; set; }
+
         public static Action<Type> OpenMainWindowCallback { get; set; }
 
         public static void SetOpenMainWindowCallback(Action<Type> implementation)
@@ -128,6 +130,11 @@ namespace Microsoft.PowerToys.Settings.UI.OOBE.Views
                 ModuleName = "WhatsNew",
                 IsNew = false,
             });
+            Modules.Insert((int)PowerToysModules.EnvironmentVariables, new OobePowerToysModule()
+            {
+                ModuleName = "EnvironmentVariables",
+                IsNew = true,
+            });
         }
 
         public void OnClosing()
@@ -174,6 +181,7 @@ namespace Microsoft.PowerToys.Settings.UI.OOBE.Views
                     case "ShortcutGuide": NavigationFrame.Navigate(typeof(OobeShortcutGuide)); break;
                     case "VideoConference": NavigationFrame.Navigate(typeof(OobeVideoConference)); break;
                     case "MouseUtils": NavigationFrame.Navigate(typeof(OobeMouseUtils)); break;
+                    case "EnvironmentVariables": NavigationFrame.Navigate(typeof(OobeEnvironmentVariables)); break;
                 }
             }
         }
