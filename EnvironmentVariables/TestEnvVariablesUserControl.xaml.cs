@@ -1,4 +1,5 @@
-﻿using EnvironmentVariables.ViewModels;
+﻿using EnvironmentVariables.Models;
+using EnvironmentVariables.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -52,7 +53,7 @@ namespace EnvironmentVariables
             var selectedEnvVariable = EnvVariablesList.SelectedItem as EnvVariable;
             if (selectedEnvVariable != null)
             {
-                ViewModel.DeleteVariable(selectedEnvVariable.Key);
+                ViewModel.DeleteVariable(selectedEnvVariable.Label);
             }
         }
     }

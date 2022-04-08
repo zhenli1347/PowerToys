@@ -7,10 +7,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock>System</TextBlock>
-        <local:TestSystemEnvVariablesUserControl Height="300"></local:TestSystemEnvVariablesUserControl>
-        <TextBlock>User</TextBlock>
-        <local:TestUserEnvVariablesUserControl Height="300"></local:TestUserEnvVariablesUserControl>
-    </StackPanel>
+    <Grid ColumnSpacing="90">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontWeight="SemiBold"
+                   Text="System"
+                   Margin="40,0,0,0"
+                   VerticalAlignment="Center" />
+        <local:TestSystemEnvVariablesUserControl Grid.Row="1"/>
+
+        <TextBlock FontWeight="SemiBold"
+                   Text="User"
+                    Margin="40,0,0,0"
+                   VerticalAlignment="Center"
+                   Grid.Column="1"/>
+        <local:TestUserEnvVariablesUserControl Grid.Column="1" Grid.Row="1"/>
+    </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnvironmentVariables.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,22 +23,45 @@ namespace EnvironmentVariables.ViewModels
         private void LoadEnvVariables(EnvironmentVariableTarget target)
         {
             var envVariables = Environment.GetEnvironmentVariables(target);
-            foreach (DictionaryEntry envVariable in envVariables)
+            foreach (DictionaryEntry envVar in envVariables)
             {
-                string key = envVariable.Key as string;
-                string value = envVariable.Value as string;
+                string key = envVar.Key as string;
+                string value = envVar.Value as string;
                 if (string.IsNullOrEmpty(key))
                 {
                     continue;
                 }
 
-                ObservableCollection<string> values = new ObservableCollection<string>();
+                EnvVariable envVariable = new EnvVariable();
+                envVariable.Name = key;
+                envVariable.Label = value;
+
                 var splitValues = value.Split(';');
-                foreach(string valueSplit in splitValues)
+
+                if (splitValues.Length > 1)
                 {
-                    values.Add(valueSplit);
+                    envVariable.Type = Models.EnvVariableType.Multi;
+                    envVariable.Values = new ObservableCollection<EnvVariable>();
+                    foreach (string valueSplit in splitValues)
+                    {
+                        envVariable.Values.Add(new EnvVariable() {  Name = key, Label = valueSplit});
+                    }
+
                 }
-                variables.Add(new EnvVariable(key, values));
+                else
+                {
+                    envVariable.Type = EnvVariableType.Single;
+
+
+                }
+
+                variables.Add(envVariable);
+
+                ObservableCollection<string> values = new ObservableCollection<string>();
+             
+               
+                System.Diagnostics.Debug.WriteLine(values.Count);
+             
             }
         }
 
