@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -40,12 +41,16 @@ namespace EnvironmentVariables
         {
             ViewModel.AddVariable("testvar", "testvalue");
         }
+
         private void EditVariable(object sender, RoutedEventArgs e)
         {
             var selectedEnvVariable = EnvVariablesList.SelectedItem as EnvVariable;
             if (selectedEnvVariable != null)
             {
-                ViewModel.EditVariable("testvar", "testvalue");
+                new Thread(() =>
+                {
+                    ViewModel.EditVariable("testvar1", "testvalue");
+                }).Start();
             }
         }
         private void DeleteVariable(object sender, RoutedEventArgs e)

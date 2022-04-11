@@ -67,17 +67,26 @@ namespace EnvironmentVariables.ViewModels
 
         internal void AddVariable(string key, string value)
         {
-            Environment.SetEnvironmentVariable(key, value, target);
+            if (!string.IsNullOrEmpty(key))
+            {
+                Environment.SetEnvironmentVariable(key, value, target);
+            }
         }
 
         internal void EditVariable(string key, string value)
         {
-            Environment.SetEnvironmentVariable(key, value, target);
+            if (!string.IsNullOrEmpty(key))
+            {
+                Environment.SetEnvironmentVariable(key, value, target);
+            }
         }
 
         internal void DeleteVariable(string key)
         {
-            Environment.SetEnvironmentVariable(key, null, target);
+            if (!string.IsNullOrEmpty(key))
+            {
+                Environment.SetEnvironmentVariable(key, null, target);
+            }
         }
 
         private ObservableCollection<EnvVariable> variables = new ObservableCollection<EnvVariable>();
