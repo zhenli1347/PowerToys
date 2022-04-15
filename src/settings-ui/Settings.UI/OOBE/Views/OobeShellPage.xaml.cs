@@ -31,11 +31,6 @@ namespace Microsoft.PowerToys.Settings.UI.OOBE.Views
 
         public static Func<string> EnvironmentVariablesSharedEventCallback { get; set; }
 
-        public static void SetEnvironmentVariablesSharedEventCallback(Func<string> implementation)
-        {
-            EnvironmentVariablesSharedEventCallback = implementation;
-        }
-
         public static Action<Type> OpenMainWindowCallback { get; set; }
 
         public static void SetOpenMainWindowCallback(Action<Type> implementation)

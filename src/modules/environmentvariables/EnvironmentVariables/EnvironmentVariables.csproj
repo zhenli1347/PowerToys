@@ -9,8 +9,12 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
+    <OutputPath>$(SolutionDir)$(Platform)\$(Configuration)\modules\EnvironmentVariables</OutputPath>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <WindowsPackageType>None</WindowsPackageType>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <AssemblyName>PowerToys.EnvironmentVariables</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestEnvVariablesUserControl.xaml" />

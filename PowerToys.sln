@@ -404,7 +404,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Plugin.WindowWalker.UnitTests", "src\modules\launcher\Plugins\Microsoft.Plugin.WindowWalker.UnitTests\Microsoft.Plugin.WindowWalker.UnitTests.csproj", "{8FE5A5EE-1B59-401C-9FB3-B04ECD3E29C1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerToys.Settings", "src\settings-ui\Settings.UI\PowerToys.Settings.csproj", "{020A7474-3601-4160-A159-D7B70B77B15F}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentVariables", "EnvironmentVariables\EnvironmentVariables.csproj", "{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnvironmentVariables", "src\modules\environmentvariables\EnvironmentVariables\EnvironmentVariables.csproj", "{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EnvironmentVariablesModuleInterface", "src\modules\environmentvariables\EnvironmentVariablesModuleInterface\EnvironmentVariablesModuleInterface.vcxproj", "{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "environmentvariables", "environmentvariables", "{8BD38529-CEF7-4A18-B57B-A11CFF4A2E94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1121,6 +1126,14 @@ Global
 		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Release|x64.Build.0 = Release|x64
 		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Release|x86.ActiveCfg = Release|x64
 		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219}.Release|x86.Build.0 = Release|x64
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}.Debug|x64.ActiveCfg = Debug|x64
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}.Debug|x64.Build.0 = Debug|x64
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}.Debug|x86.ActiveCfg = Debug|x64
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}.Debug|x86.Build.0 = Debug|x64
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}.Release|x64.ActiveCfg = Release|x64
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}.Release|x64.Build.0 = Release|x64
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}.Release|x86.ActiveCfg = Release|x64
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1255,6 +1268,9 @@ Global
 		{FD464B4C-2F68-4D06-91E7-4208146C41F5} = {4AFC9975-2456-4C70-94A4-84073C1CED93}
 		{8FE5A5EE-1B59-401C-9FB3-B04ECD3E29C1} = {4AFC9975-2456-4C70-94A4-84073C1CED93}
 		{020A7474-3601-4160-A159-D7B70B77B15F} = {C3081D9A-1586-441A-B5F4-ED815B3719C1}
+		{B7E8305B-B8F7-497E-9A7B-FE0CBEFBE219} = {8BD38529-CEF7-4A18-B57B-A11CFF4A2E94}
+		{E9F64FD4-A3A4-489C-BC6D-D6F2EA8CC1D5} = {8BD38529-CEF7-4A18-B57B-A11CFF4A2E94}
+		{8BD38529-CEF7-4A18-B57B-A11CFF4A2E94} = {4574FDD0-F61D-4376-98BF-E5A1262C11EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3A2F9D1-7930-4EF4-A6FC-7EE0A99821D0}

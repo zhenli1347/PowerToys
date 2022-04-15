@@ -25,13 +25,7 @@ namespace Microsoft.PowerToys.Settings.UI.OOBE.Views
 
         private void Start_EnvironmentVariables_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
-            if (OobeShellPage.EnvironmentVariablesSharedEventCallback != null)
-            {
-                using (var eventHandle = new EventWaitHandle(false, EventResetMode.AutoReset, OobeShellPage.EnvironmentVariablesSharedEventCallback()))
-                {
-                    eventHandle.Set();
-                }
-            }
+            ShellPage.SendDefaultIPCMessage("{\"action\":{\"EnvironmentVariables\":{\"action_name\":\"LaunchApp\", \"value\":\"\"}}}");
 
             ViewModel.LogRunningModuleEvent();
         }
