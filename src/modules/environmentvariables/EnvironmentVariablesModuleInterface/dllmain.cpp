@@ -53,9 +53,27 @@ private:
         return WaitForSingleObject(m_hProcess, 0) == WAIT_TIMEOUT;
     }
 
+    void bring_process_to_front(HANDLE process_id)
+    {
+        auto enum_windows = [](HWND hwnd, LPARAM param) -> BOOL {
+            HANDLE env_var_process_handle = (HANDLE)param;
+            DWORD window_process_id = 0;
+
+            GetWindowThreadProcessId(hwnd, &window_process_id);
+            if (GetProcessId(env_var_process_handle) == window_process_id)
+            {
+                SetForegroundWindow(hwnd);
+                return FALSE;
+            }
+            return TRUE;
+        };
+
+        EnumWindows(enum_windows, (LPARAM)process_id);
+    }
+
     void launch_process()
     {
-        Logger::trace(L"Starting ColorPicker process");
+        Logger::trace(L"Starting EnvironmentVariables process");
         unsigned long powertoys_pid = GetCurrentProcessId();
 
         std::wstring executable_args = L"";
@@ -119,6 +137,7 @@ public:
     {
         if (is_process_running())
         {
+            bring_process_to_front(m_hProcess);
         }
         else
         {
