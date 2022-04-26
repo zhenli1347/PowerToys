@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="TestEnvVariablesUserControl.xaml" />
+    <None Remove="Views\SystemPage.xaml" />
     <None Remove="Views\UserPage.xaml" />
   </ItemGroup>
 
@@ -58,6 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Remove="Converters\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\SystemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\UserPage.xaml">

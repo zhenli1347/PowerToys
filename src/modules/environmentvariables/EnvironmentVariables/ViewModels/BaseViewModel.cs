@@ -58,9 +58,10 @@ namespace EnvironmentVariables.ViewModels
                 EnvironmentVariablesHelper.UpdateVariable(selectedVar);
                 var hasCurrent = HasCurrent;
 
+                // THIS WORKS FOR A LISTVIEW, BUT NOT FOR A DATAGRID -->
                 var i = items.IndexOf(original);
                 items[i] = item; // Raises CollectionChanged.
-
+                
 
                 OnPropertyChanged(nameof(Items));
 

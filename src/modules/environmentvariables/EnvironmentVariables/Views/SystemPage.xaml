@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="EnvironmentVariables.Views.SystemPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EnvironmentVariables.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel>
+            <controls:DataGrid
+                  x:Name="EmployeeGrid"
+                  ItemsSource="{x:Bind Items,Mode=TwoWay}"
+                  AutoGenerateColumns="False"
+                 GridLinesVisibility="All"
+                Width="700"
+                Height="800"
+                BeginningEdit="EmployeeGrid_BeginningEdit"
+               
+                SelectionChanged="EmployeeGrid_SelectionChanged"
+                >
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="Key"
+                                             Binding="{Binding Key}"/>
+                    <controls:DataGridTextColumn Header="Value"
+                                             Binding="{Binding Value}"/>
+
+                    <controls:DataGridTemplateColumn Header="">
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="DeleteButton" Background="#00000000" Click="DeleteButton_Click">
+                                    <Image Source="/Assets/IconDelete.png" Height="30" Width="30" Stretch="UniformToFill" />
+                                </Button>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+        </StackPanel>
+
+
+        <ContentDialog x:Name="EditDialog"
+                       PrimaryButtonText="Update"
+                       Grid.RowSpan="2"
+                       CloseButtonText="Cancel">
+            <StackPanel Width="480"
+                        Spacing="24"
+                        HorizontalAlignment="Stretch">
+                <TextBox Header="Variable name"
+                         Text="{Binding Key, Mode=TwoWay}" />
+                <TextBox Header="Value"
+                         AcceptsReturn="True"
+                         Text="{Binding Value, Mode=TwoWay}"
+                     />
+            </StackPanel>
+        </ContentDialog>
+    </Grid>
+</Page>
