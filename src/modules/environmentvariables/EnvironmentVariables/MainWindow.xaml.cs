@@ -1,19 +1,9 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using EnvironmentVariables.Views;
 using Microsoft.UI;           // Needed for WindowId
 using Microsoft.UI.Windowing; // Needed for AppWindow
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using System;
 using WinRT.Interop;          // Needed for XAML/HWND interop.
 
 namespace EnvironmentVariables
@@ -40,7 +30,7 @@ namespace EnvironmentVariables
                 // Title bar customization using these APIs is currently
                 // supported only on Windows 11. In other cases, hide
                 // the custom title bar element.
-                //AppTitleBar.Visibility = Visibility.Collapsed;
+                AppTitleBar.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -49,6 +39,27 @@ namespace EnvironmentVariables
             IntPtr hWnd = WindowNative.GetWindowHandle(this);
             WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
             return AppWindow.GetFromWindowId(wndId);
+        }
+
+        private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked)
+            {
+                // TO DO: Open Settings
+            }
+            else
+            {
+                switch (args.InvokedItem.ToString())
+                {
+                    case "User": NavFrame.Navigate(typeof(UserPage)); break;
+                    case "System": NavFrame.Navigate(typeof(UserPage)); break;
+                }
+            }
+        }
+
+        private void NavigationView_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavFrame.Navigate(typeof(UserPage));
         }
     }
 }

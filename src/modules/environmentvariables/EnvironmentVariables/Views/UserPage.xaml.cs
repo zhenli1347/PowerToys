@@ -16,31 +16,40 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace EnvironmentVariables.Views
 {
-    public sealed partial class MainPageControl : UserControl
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class UserPage : Page
     {
-        public MainPageControl()
+        public UserPage()
         {
             this.InitializeComponent();
         }
 
-        public ICommand NewCommand => new AsyncRelayCommand(OpenNewDialog);
 
-        public ICommand EditCommand => new AsyncRelayCommand(OpenEditDialog);
+        public ICommand NewDialogCommand => new AsyncRelayCommand(OpenNewDialog);
+
+        public ICommand EditDialogCommand => new AsyncRelayCommand(OpenEditDialog);
+
+        public ICommand RemoveDialogCommand => new AsyncRelayCommand(OpenDeleteDialog);
 
         private ICommand UpdateCommand => new RelayCommand(Update);
 
         private ICommand InsertCommand => new RelayCommand(Insert);
 
+        private ICommand DeleteCommand => new RelayCommand(Delete);
+
         private async Task OpenNewDialog()
         {
-            EditDialog.Title = "New Character";
-            EditDialog.PrimaryButtonText = "Insert";
+            EditDialog.Title = "New environment variable";
+            EditDialog.PrimaryButtonText = "Add";
             EditDialog.PrimaryButtonCommand = InsertCommand;
             EditDialog.DataContext = new EnvVariable();
             await EditDialog.ShowAsync();
@@ -48,12 +57,22 @@ namespace EnvironmentVariables.Views
 
         private async Task OpenEditDialog()
         {
-            EditDialog.Title = "Edit Character";
+            EditDialog.Title = "Edit environment variable";
             EditDialog.PrimaryButtonText = "Update";
             EditDialog.PrimaryButtonCommand = UpdateCommand;
             var clone = ViewModel.Current.Clone();
-            clone.Name = ViewModel.Current.Name;
+            clone.Key = ViewModel.Current.Key;
             EditDialog.DataContext = clone;
+            await EditDialog.ShowAsync();
+        }
+
+        private async Task OpenDeleteDialog()
+        {
+            EditDialog.Title = "Delete environment variable";
+            EditDialog.PrimaryButtonText = "Delete";
+            EditDialog.PrimaryButtonCommand = DeleteCommand;
+
+            EditDialog.DataContext = ViewModel.Current;
             await EditDialog.ShowAsync();
         }
 
@@ -62,10 +81,15 @@ namespace EnvironmentVariables.Views
             ViewModel.UpdateItem(EditDialog.DataContext as EnvVariable, ViewModel.Current);
         }
 
+        private void Delete()
+        {
+            ViewModel.DeleteItem(EditDialog.DataContext as EnvVariable);
+        }
+
         private void Insert()
         {
             // Does not work when filter is active:
-           //  ViewModel.Items.Add(EditDialog.DataContext as EnvVariable);
+            //  ViewModel.Items.Add(EditDialog.DataContext as EnvVariable);
 
             var character = ViewModel.AddItem(EditDialog.DataContext as EnvVariable);
             if (ViewModel.Items.Contains(character))

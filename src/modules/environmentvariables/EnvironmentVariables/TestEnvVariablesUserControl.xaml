@@ -35,8 +35,8 @@
                                         <ColumnDefinition Width="200" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{x:Bind Name}" />
-                                    <TextBlock Text="{x:Bind Label}"
+                                    <TextBlock Text="{x:Bind Key}" />
+                                    <TextBlock Text="{x:Bind Value}"
                                            FontSize="12"
                                            VerticalAlignment="Center"
                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"

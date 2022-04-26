@@ -58,7 +58,7 @@ namespace EnvironmentVariables
             var selectedEnvVariable = EnvVariablesList.SelectedItem as EnvVariable;
             if (selectedEnvVariable != null)
             {
-                ViewModel.DeleteVariable(selectedEnvVariable.Label);
+                ViewModel.DeleteVariable(selectedEnvVariable.Value);
             }
         }
     }

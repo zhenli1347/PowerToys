@@ -11,10 +11,13 @@ namespace EnvironmentVariables.Models
     public partial class EnvVariable : ObservableObject
     {
         [ObservableProperty]
-        private string name;
+        private string key;
 
         [ObservableProperty]
-        private string label;
+        private string value;
+
+        [ObservableProperty]
+        private EnvironmentVariableTarget target;
 
         [ObservableProperty]
         private EnvVariableType type;
@@ -27,8 +30,9 @@ namespace EnvironmentVariables.Models
 
         public EnvVariable()
         {
-            name = "(new)";
-            label = string.Empty;
+            key = "(new)";
+            value = string.Empty;
+            target = EnvironmentVariableTarget.User;
             type = EnvVariableType.Single;
             values = null;
         }
@@ -37,8 +41,9 @@ namespace EnvironmentVariables.Models
         {
             return new EnvVariable
             {
-                Name = $"{Name} clone",
-                Label = Label,
+                Key = $"{Key} clone",
+                Value = Value,
+                Target = Target,
                 Type = Type,
                 Values = Values
             };
@@ -46,8 +51,9 @@ namespace EnvironmentVariables.Models
 
         public EnvVariable UpdateFrom(EnvVariable otherCharacter)
         {
-            Name = otherCharacter.Name;
-            Label = otherCharacter.Label;
+            Key = otherCharacter.Key;
+            Value = otherCharacter.Value;
+            Target = otherCharacter.Target;
             Type = otherCharacter.Type;
             Values = otherCharacter.Values;
 
@@ -55,7 +61,7 @@ namespace EnvironmentVariables.Models
         }
         public override string ToString()
         {
-            return Name;
+            return Key;
         }
     }
     public enum EnvVariableType

@@ -33,8 +33,8 @@ namespace EnvironmentVariables.ViewModels
                 }
 
                 EnvVariable envVariable = new EnvVariable();
-                envVariable.Name = key;
-                envVariable.Label = value;
+                envVariable.Key = key;
+                envVariable.Value = value;
 
                 var splitValues = value.Split(';');
 
@@ -44,7 +44,7 @@ namespace EnvironmentVariables.ViewModels
                     envVariable.Values = new ObservableCollection<EnvVariable>();
                     foreach (string valueSplit in splitValues)
                     {
-                        envVariable.Values.Add(new EnvVariable() {  Name = key, Label = valueSplit});
+                        envVariable.Values.Add(new EnvVariable() {  Key = key, Value = valueSplit});
                     }
 
                 }

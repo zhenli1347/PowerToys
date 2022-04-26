@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -17,8 +17,15 @@
     <AssemblyName>PowerToys.EnvironmentVariables</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Converters\**" />
+    <EmbeddedResource Remove="Converters\**" />
+    <None Remove="Converters\**" />
+    <Page Remove="Converters\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="TestEnvVariablesUserControl.xaml" />
     <None Remove="Views\MainPageControl.xaml" />
+    <None Remove="Views\UserPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,10 +57,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
+    <Page Update="Views\MainPageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\MainPageControl.xaml">
+    <PRIResource Remove="Converters\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\UserPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
