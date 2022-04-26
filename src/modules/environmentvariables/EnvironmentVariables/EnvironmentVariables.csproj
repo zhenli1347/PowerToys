@@ -24,7 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="TestEnvVariablesUserControl.xaml" />
-    <None Remove="Views\MainPageControl.xaml" />
     <None Remove="Views\UserPage.xaml" />
   </ItemGroup>
 
@@ -39,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0-preview1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
@@ -53,11 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="TestEnvVariablesUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\MainPageControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

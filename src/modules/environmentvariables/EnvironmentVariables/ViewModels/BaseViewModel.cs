@@ -66,7 +66,7 @@ namespace EnvironmentVariables.ViewModels
                 var i = items.IndexOf(original);
                 items[i] = item; // Raises CollectionChanged.
 
-               
+
                 OnPropertyChanged(nameof(Items));
 
                 if (hasCurrent && !HasCurrent)

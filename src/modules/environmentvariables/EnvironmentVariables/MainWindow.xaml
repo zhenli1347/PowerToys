@@ -29,6 +29,7 @@
         <!-- NavigationView -->
         <NavigationView PaneDisplayMode="Top"
                         IsSettingsVisible="True"
+                        IsBackButtonVisible="Collapsed"
                         Margin="0,12,0,0"
                         Grid.Row="1"
                         Loaded="NavigationView_Loaded"
