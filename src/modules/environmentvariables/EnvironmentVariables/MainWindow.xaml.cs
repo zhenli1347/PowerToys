@@ -40,7 +40,7 @@ namespace EnvironmentVariables
                 // Title bar customization using these APIs is currently
                 // supported only on Windows 11. In other cases, hide
                 // the custom title bar element.
-                AppTitleBar.Visibility = Visibility.Collapsed;
+                //AppTitleBar.Visibility = Visibility.Collapsed;
             }
         }
 
