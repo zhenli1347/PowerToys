@@ -9,11 +9,6 @@ namespace EnvironmentVariables.ViewModels
 {
     public abstract partial class BaseViewModel<T> : ObservableObject
     {
-        //  private readonly ObservableCollection<T> items = new();
-
-        // Too bad these don't work (yet?).
-        // [ObservableProperty]
-        // [AlsoNotifyChangeFor(nameof(HasCurrent))]
         private T current;
 
         private ObservableCollection<T> items = new ObservableCollection<T>();

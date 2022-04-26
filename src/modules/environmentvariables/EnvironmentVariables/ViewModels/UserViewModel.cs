@@ -22,16 +22,6 @@ namespace EnvironmentVariables.ViewModels
             }
             Items.CollectionChanged += Items_CollectionChanged;
         }
-        public ICommand DeleteCommand => new RelayCommand<EnvVariable>(DeleteCommand_Executed);
-
-        private void DeleteCommand_Executed(EnvVariable parm)
-        {
-            if (parm is not null)
-            {
-                var toBeDeleted = Items.FirstOrDefault(c => c.Key == parm.Key);
-                DeleteItem(toBeDeleted);
-            }
-        }
 
         private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
