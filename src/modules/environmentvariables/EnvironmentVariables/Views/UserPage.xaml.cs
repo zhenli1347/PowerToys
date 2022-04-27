@@ -68,12 +68,9 @@ namespace EnvironmentVariables.Views
 
         private async Task OpenDeleteDialog()
         {
-            EditDialog.Title = "Delete environment variable";
-            EditDialog.PrimaryButtonText = "Delete";
-            EditDialog.PrimaryButtonCommand = DeleteCommand;
-
-            EditDialog.DataContext = ViewModel.Current;
-            await EditDialog.ShowAsync();
+            DeleteDialog.PrimaryButtonCommand = DeleteCommand;
+            DeleteDialog.DataContext = ViewModel.Current;
+            await DeleteDialog.ShowAsync();
         }
 
         private void Update()
@@ -83,7 +80,7 @@ namespace EnvironmentVariables.Views
 
         private void Delete()
         {
-            ViewModel.DeleteItem(EditDialog.DataContext as EnvVariable);
+            ViewModel.DeleteItem(DeleteDialog.DataContext as EnvVariable);
         }
 
         private void Insert()
@@ -96,6 +93,38 @@ namespace EnvironmentVariables.Views
             {
                 ViewModel.Current = character;
             }
+        }
+
+        private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            FrameworkElement senderElement = sender as FrameworkElement;
+            // If you need the clicked element:
+         
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            flyoutBase.ShowAt(senderElement);
+        }
+
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuFlyoutItem menuFlyoutItem)
+            {
+                MenuFlyoutItem selectedItem = sender as MenuFlyoutItem;
+                ViewModel.Current = (EnvVariable)selectedItem.DataContext;
+                await OpenDeleteDialog();
+            }
+        }
+
+            private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            EnvVariable selectedItem = e.ClickedItem as EnvVariable;
+            ViewModel.Current = selectedItem;
+            EditDialog.Title = "Edit environment variable";
+            EditDialog.PrimaryButtonText = "Update";
+            EditDialog.PrimaryButtonCommand = UpdateCommand;
+            var clone = ViewModel.Current.Clone();
+            clone.Key = ViewModel.Current.Key;
+            EditDialog.DataContext = clone;
+            await EditDialog.ShowAsync();
         }
     }
 }

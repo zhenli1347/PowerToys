@@ -52,13 +52,14 @@ namespace EnvironmentVariables
                 switch (args.InvokedItem.ToString())
                 {
                     case "User": NavFrame.Navigate(typeof(UserPage)); break;
-                    case "System": NavFrame.Navigate(typeof(UserPage)); break;
+                    case "System": NavFrame.Navigate(typeof(SystemPage)); break;
                 }
             }
         }
 
         private void NavigationView_Loaded(object sender, RoutedEventArgs e)
         {
+            NavView.SelectedItem = NavView.MenuItems[0];
             NavFrame.Navigate(typeof(UserPage));
         }
     }

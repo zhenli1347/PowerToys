@@ -32,11 +32,20 @@
                         IsBackButtonVisible="Collapsed"
                         Margin="0,12,0,0"
                         Grid.Row="1"
+                        x:Name="NavView"
                         Loaded="NavigationView_Loaded"
                         ItemInvoked="NavigationView_ItemInvoked">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="User" Tag="User"/>
-                <NavigationViewItem Content="System" Tag="System"/>
+                <NavigationViewItem Content="User" Tag="User">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE2AF;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="System" Tag="System">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE770;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
             <Frame x:Name="NavFrame" />
         </NavigationView>
