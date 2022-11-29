@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using Experimentation;
 using Microsoft.PowerToys.Settings.UI.Library;
 using Microsoft.PowerToys.Settings.UI.OOBE.Enums;
 using Microsoft.PowerToys.Settings.UI.OOBE.ViewModel;
@@ -49,9 +50,8 @@ namespace Microsoft.PowerToys.Settings.UI.OOBE.Views
 
         public OobeShellPage()
         {
-            VariantService varServ = new VariantService();
-            varServ.VariantAssignmentProvider_Initialize();
-            landingPageFlag = varServ.FeatureFlagValue;
+            Experiments exp = new Experiments();
+            experimentEnabled = exp.EnableLandingPageExperiment();
 
             InitializeComponent();
 
@@ -182,7 +182,7 @@ namespace Microsoft.PowerToys.Settings.UI.OOBE.Views
             }
         }
 
-        private string landingPageFlag = "current";
+        private bool experimentEnabled;
 
         private void NavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
@@ -193,7 +193,7 @@ namespace Microsoft.PowerToys.Settings.UI.OOBE.Views
                 switch (selectedItem.Tag)
                 {
                     case "Overview":
-                        if (landingPageFlag == "alternate")
+                        if (experimentEnabled == true)
                         {
                             NavigationFrame.Navigate(typeof(OobeOverviewAlternate));
                         }

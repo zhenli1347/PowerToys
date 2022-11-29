@@ -2149,7 +2149,7 @@ namespace Microsoft.PowerToys.Run.Plugin.WindowsSettings.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nearby share settings.
+        ///   Looks up a localized string similar to Nearby sharing settings.
         /// </summary>
         internal static string NearbyShareSettings {
             get {

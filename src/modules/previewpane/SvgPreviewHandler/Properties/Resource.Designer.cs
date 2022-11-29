@@ -19,7 +19,7 @@ namespace Microsoft.PowerToys.PreviewHandler.Svg.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -39,7 +39,7 @@ namespace Microsoft.PowerToys.PreviewHandler.Svg.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.PowerToys.PreviewHandler.Svg.Properties.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Properties.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,20 +70,20 @@ namespace Microsoft.PowerToys.PreviewHandler.Svg.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tried to start with a GPO policy setting the utility to always be disabled. Please contact your systems administrator..
+        /// </summary>
+        internal static string GpoDisabledErrorText {
+            get {
+                return ResourceManager.GetString("GpoDisabledErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Svg could not be preview due to an internal error in Svg Preview Handler..
         /// </summary>
         internal static string SvgNotPreviewedError {
             get {
                 return ResourceManager.GetString("SvgNotPreviewedError", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string for an error when Gpo has the utility disabled.
-        /// </summary>
-        internal static string GpoDisabledErrorText {
-            get {
-                return ResourceManager.GetString("GpoDisabledErrorText", resourceCulture);
             }
         }
     }

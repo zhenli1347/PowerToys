@@ -77,9 +77,9 @@ namespace Microsoft.PowerToys.PreviewHandler.Gcode.Properties {
                 return ResourceManager.GetString("GcodeWithoutEmbeddedThumbnails", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string for an error when Gpo has the utility disabled.
+        ///   Looks up a localized string similar to Tried to start with a GPO policy setting the utility to always be disabled. Please contact your systems administrator..
         /// </summary>
         internal static string GpoDisabledErrorText {
             get {
