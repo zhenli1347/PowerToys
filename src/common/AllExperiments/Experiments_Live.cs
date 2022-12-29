@@ -17,11 +17,28 @@ namespace AllExperiments
     public class Experiments
 #pragma warning restore SA1649 // File name should match first type name
     {
+
+        enum ExperimentState
+        {
+            Enabled,
+            Disabled,
+            NotLoaded
+        }
+
+        public static ExperimentState LandingPageExperiment = NotLoaded;
+
         public async Task<bool> EnableLandingPageExperimentAsync()
         {
+            if (LandingPageExperiment != NotLoaded)
+            {
+                return LandingPageExperiment == Enabled;
+            }
+
             Experiments varServ = new Experiments();
             await varServ.VariantAssignmentProvider_Initialize();
             var landingPageExperiment = varServ.IsExperiment;
+
+            LandingPageExperiment = landingPageExperiment ? ExperimentState.Enabed : ExperimentState.Disabled;
 
             return landingPageExperiment;
         }
@@ -45,6 +62,8 @@ namespace AllExperiments
 
                 if (variantAssignments.AssignedVariants.Count != 0)
                 {
+                    // TOOD: Try to load assignments from cached JSON file if we can't get them online.
+
                     var featureVariables = variantAssignments.GetFeatureVariables();
                     var assignmentContext = variantAssignments.GetAssignmentContext();
                     var featureFlagValue = featureVariables[0].GetStringValue();
