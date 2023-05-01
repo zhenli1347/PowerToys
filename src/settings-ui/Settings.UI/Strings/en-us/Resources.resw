@@ -3537,4 +3537,10 @@ Activate by holding the key for the character you want to add an accent to, then
   <data name="MWB_SecurityKeyLabel.PlaceholderText" xml:space="preserve">
     <value>Security key</value>
   </data>
+  <data name="FileExplorerPreview_ToggleSwitch_Preview_Archive.Description" xml:space="preserve">
+    <value>.zip, .rar, .7z, .nupkg, ...</value>
+  </data>
+  <data name="FileExplorerPreview_ToggleSwitch_Preview_Archive.Header" xml:space="preserve">
+    <value>Archives</value>
+  </data>
 </root>

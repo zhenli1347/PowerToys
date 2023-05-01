@@ -221,6 +221,22 @@ namespace Microsoft.PowerToys.Settings.UI.Library
         [JsonPropertyName("stl-thumbnail-color-setting")]
         public StringProperty StlThumbnailColor { get; set; }
 
+        private bool enableArchivePreview;
+
+        [JsonPropertyName("archive-previewer-toggle-setting")]
+        [JsonConverter(typeof(BoolPropertyJsonConverter))]
+        public bool EnableArchivePreview
+        {
+            get => enableArchivePreview;
+            set
+            {
+                if (value != enableArchivePreview)
+                {
+                    enableArchivePreview = value;
+                }
+            }
+        }
+
         public PowerPreviewProperties()
         {
             SvgBackgroundColorMode = new IntProperty(DefaultSvgBackgroundColorMode);

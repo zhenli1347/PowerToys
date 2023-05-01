@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\Version.props" />
+  
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>ArchivePreviewHandler</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RuntimeIdentifiers>win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    <WindowsPackageType>None</WindowsPackageType>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <OutputPath>$(SolutionDir)$(Platform)\$(Configuration)\modules\FileExplorerPreview\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\obj\$(AssemblyName)</IntermediateOutputPath>
+    <RootNamespace>ArchivePreviewHandler</RootNamespace>
+    <AssemblyName>PowerToys.ArchivePreviewHandler</AssemblyName>
+    <DefineConstants>DISABLE_XAML_GENERATED_MAIN,TRACE</DefineConstants>
+    <SelfContained>true</SelfContained>
+  </PropertyGroup>
+
+  <!-- SelfContained=true requires RuntimeIdentifier to be set -->
+  <PropertyGroup Condition="'$(Platform)'=='x64'">
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)'=='ARM64'">
+    <RuntimeIdentifier>win10-arm64</RuntimeIdentifier>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="MainPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+    <PackageReference Include="SharpCompress" />
+    <PackageReference Include="System.Drawing.Common" />
+    <PackageReference Include="WinUIEx" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\common\Common.UI\Common.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

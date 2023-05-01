@@ -21,6 +21,7 @@ namespace NonLocalizable
     const static std::vector<std::wstring> ExtNoNoNo   = { 
         L".svgz" //Monaco cannot handle this file type at all; it's a binary file.
     };
+    const static std::vector<std::wstring> ExtArchive = { L".zip", L".rar", L".7z", L".tar", L".nupkg", L".jar" };
 }
 
 inline registry::ChangeSet getSvgPreviewHandlerChangeSet(const std::wstring installationDir, const bool perUser)
@@ -208,6 +209,19 @@ inline registry::ChangeSet getRegistryPreviewChangeSet(const std::wstring instal
     changes.push_back({ scope, L"Software\\Classes\\regfile\\shell\\preview", L"icon", icon_path });
 
     return { changes };
+}
+
+inline registry::ChangeSet getArchivePreviewHandlerChangeSet(const std::wstring installationDir, const bool perUser)
+{
+    using namespace registry::shellex;
+    return generatePreviewHandler(PreviewHandlerType::preview,
+                                  perUser,
+                                  L"{D8585DB4-4715-4AF0-B67D-17090EAB43CF}",
+                                  get_std_product_version(),
+                                  (fs::path{ installationDir } / LR"d(modules\FileExplorerPreview\PowerToys.ArchivePreviewHandlerCpp.dll)d").wstring(),
+                                  L"ArchivePreviewHandler",
+                                  L"Archive Preview Handler",
+                                  NonLocalizable::ExtArchive);
 }
 
 inline std::vector<registry::ChangeSet> getAllOnByDefaultModulesChangeSets(const std::wstring installationDir)

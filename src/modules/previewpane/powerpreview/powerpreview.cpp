@@ -71,6 +71,11 @@ PowerPreviewModule::PowerPreviewModule() :
                                       .checkModuleGPOEnabledRuleFunction = powertoys_gpo::getConfiguredStlThumbnailsEnabledValue,
                                       .registryChanges = getStlThumbnailHandlerChangeSet(installationDir, installPerUser) });
 
+    m_fileExplorerModules.push_back({ .settingName = L"archive-previewer-toggle-setting",
+                                      .settingDescription = GET_RESOURCE_STRING(IDS_PREVPANE_ARCHIVE_SETTINGS_DESCRIPTION),
+                                      .checkModuleGPOEnabledRuleFunction = powertoys_gpo::getConfiguredArchivePreviewEnabledValue,
+                                      .registryChanges = getArchivePreviewHandlerChangeSet(installationDir, installPerUser) });
+
     try
     {
         PowerToysSettings::PowerToyValues settings =

@@ -166,6 +166,18 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
             }
 
             _stlThumbnailColor = Settings.Properties.StlThumbnailColor.Value;
+
+            _archiveRenderEnabledGpoRuleConfiguration = GPOWrapper.GetConfiguredArchivePreviewEnabledValue();
+            if (_archiveRenderEnabledGpoRuleConfiguration == GpoRuleConfigured.Disabled || _archiveRenderEnabledGpoRuleConfiguration == GpoRuleConfigured.Enabled)
+            {
+                // Get the enabled state from GPO.
+                _archiveRenderEnabledStateIsGPOConfigured = true;
+                _archiveRenderIsEnabled = _archiveRenderEnabledGpoRuleConfiguration == GpoRuleConfigured.Enabled;
+            }
+            else
+            {
+                _archiveRenderIsEnabled = Settings.Properties.EnableArchivePreview;
+            }
         }
 
         private GpoRuleConfigured _svgRenderEnabledGpoRuleConfiguration;
@@ -210,6 +222,10 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
         private bool _stlThumbnailEnabledStateIsGPOConfigured;
         private bool _stlThumbnailIsEnabled;
         private string _stlThumbnailColor;
+
+        private GpoRuleConfigured _archiveRenderEnabledGpoRuleConfiguration;
+        private bool _archiveRenderEnabledStateIsGPOConfigured;
+        private bool _archiveRenderIsEnabled;
 
         public bool SVGRenderIsEnabled
         {
@@ -614,6 +630,35 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        public bool ArchiveRenderIsEnabled
+        {
+            get
+            {
+                return _archiveRenderIsEnabled;
+            }
+
+            set
+            {
+                if (IsArchiveRenderEnabledGpoConfigured)
+                {
+                    // If it's GPO configured, shouldn't be able to change this state.
+                    return;
+                }
+
+                if (value != _archiveRenderIsEnabled)
+                {
+                    _archiveRenderIsEnabled = value;
+                    Settings.Properties.EnableArchivePreview = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public bool IsArchiveRenderEnabledGpoConfigured
+        {
+            get => _archiveRenderEnabledStateIsGPOConfigured;
         }
 
         public string GetSettingsSubPath()

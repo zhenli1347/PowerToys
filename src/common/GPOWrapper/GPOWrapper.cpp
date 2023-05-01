@@ -60,6 +60,10 @@ namespace winrt::PowerToys::GPOWrapper::implementation
     {
         return static_cast<GpoRuleConfigured>(powertoys_gpo::getConfiguredStlThumbnailsEnabledValue());
     }
+    GpoRuleConfigured GPOWrapper::GetConfiguredArchivePreviewEnabledValue()
+    {
+        return static_cast<GpoRuleConfigured>(powertoys_gpo::getConfiguredArchivePreviewEnabledValue());
+    }
     GpoRuleConfigured GPOWrapper::GetConfiguredHostsFileEditorEnabledValue()
     {
         return static_cast<GpoRuleConfigured>(powertoys_gpo::getConfiguredHostsFileEditorEnabledValue());

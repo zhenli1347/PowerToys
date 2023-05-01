@@ -254,5 +254,9 @@ public
         static String ^ ShowHostsAdminSharedEvent() {
             return gcnew String(CommonSharedConstants::SHOW_HOSTS_ADMIN_EVENT);
         }
+
+        static String ^ ArchivePreviewResizeEvent() {
+            return gcnew String(CommonSharedConstants::ARCHIVE_PREVIEW_RESIZE_EVENT);
+        }
     };
 }
