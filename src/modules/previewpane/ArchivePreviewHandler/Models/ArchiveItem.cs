@@ -25,14 +25,14 @@ namespace ArchivePreviewHandler.Models
         [ObservableProperty]
         private bool _isExpanded;
 
-        public ObservableCollection<ArchiveItem> Childrens { get; }
+        public ObservableCollection<ArchiveItem> Children { get; }
 
         public ArchiveItem(string name, ArchiveItemType type, ImageSource icon)
         {
             Name = name;
             Type = type;
             Icon = icon;
-            Childrens = new ObservableCollection<ArchiveItem>();
+            Children = new ObservableCollection<ArchiveItem>();
         }
     }
 }

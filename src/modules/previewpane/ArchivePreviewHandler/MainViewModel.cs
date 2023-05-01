@@ -89,15 +89,15 @@ namespace ArchivePreviewHandler
                         }
                         else
                         {
-                            var existing = parent.Childrens.FirstOrDefault(e => e.Name == item.Name);
+                            var existing = parent.Children.FirstOrDefault(e => e.Name == item.Name);
                             if (existing == null)
                             {
-                                var index = GetIndex(parent.Childrens, item);
-                                parent.Childrens.Insert(index, item);
+                                var index = GetIndex(parent.Children, item);
+                                parent.Children.Insert(index, item);
                                 CountItem(item);
                             }
 
-                            parent = existing ?? parent.Childrens.First(e => e.Name == item.Name);
+                            parent = existing ?? parent.Children.First(e => e.Name == item.Name);
                         }
                     }
                 }

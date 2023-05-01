@@ -19,7 +19,7 @@
                 x:DataType="models:ArchiveItem">
                 <TreeViewItem
                     AutomationProperties.Name="{x:Bind Name}"
-                    ItemsSource="{x:Bind Childrens}"
+                    ItemsSource="{x:Bind Children}"
                     IsExpanded="{x:Bind IsExpanded}">
                     <Grid ColumnSpacing="10">
                         <Grid.ColumnDefinitions>

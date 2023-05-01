@@ -46,7 +46,7 @@ namespace ArchivePreviewHandler.Helpers
             }
             catch (Exception ex)
             {
-                Logger.LogError($"Failed to retreive icon for file extension {extension}", ex);
+                Logger.LogError($"Failed to retrieve icon for file extension {extension}", ex);
             }
 
             return null;
@@ -73,7 +73,7 @@ namespace ArchivePreviewHandler.Helpers
             }
             catch (Exception ex)
             {
-                Logger.LogError($"Failed to retreive icon for directory", ex);
+                Logger.LogError($"Failed to retrieve icon for directory", ex);
             }
 
             return null;

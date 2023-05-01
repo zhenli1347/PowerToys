@@ -104,6 +104,7 @@ APSTUDIO
 AQS
 ARandom
 ARCHITEW
+archivepreviewhandler
 arcosh
 ARemapped
 argb
@@ -1112,6 +1113,7 @@ LIGHTORANGE
 LIGHTTURQUOISE
 lindex
 linkedin
+LINKOVERLAY
 linq
 LINQTo
 listview
@@ -1443,6 +1445,7 @@ nullonfailure
 numberbox
 NUMLOCK
 numpad
+nupkg
 nwc
 Objbase
 OBJID
@@ -1648,6 +1651,7 @@ psapi
 pscid
 PSECURITY
 psfgao
+psfi
 Psr
 psrm
 psrree
@@ -1892,6 +1896,7 @@ shellscalingapi
 SHFILEINFO
 SHGDNF
 SHGFI
+shinfo
 Shl
 shldisp
 shlobj
@@ -2112,6 +2117,7 @@ timedate
 timediff
 timeunion
 timeutil
+titlebar
 Titlecase
 TKey
 TLayout
@@ -2167,6 +2173,7 @@ ULARGE
 ULONGLONG
 unassign
 uncompilable
+Uncompress
 UNCPRIORITY
 UNDNAME
 UNICODETEXT
