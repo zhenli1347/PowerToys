@@ -117,7 +117,7 @@ namespace ArchivePreviewHandler
         {
             for (var i = 0; i < collection.Count; i++)
             {
-                if (item.Type == collection[i].Type && string.Compare(collection[i].Name, item.Name, StringComparison.Ordinal) > 0)
+                if (item.Type == collection[i].Type && string.Compare(collection[i].Name, item.Name, StringComparison.OrdinalIgnoreCase) > 0)
                 {
                     return i;
                 }

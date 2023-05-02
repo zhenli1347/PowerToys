@@ -22,17 +22,12 @@ namespace ArchivePreviewHandler
         {
             Logger.InitializeLogger("\\FileExplorer_localLow\\Archive\\logs", true);
 
-            if (args != null && args.Length == 6)
+            if (args != null && args.Length == 2)
             {
                 ComWrappersSupport.InitializeComWrappers();
 
                 string filePath = args[0];
                 int hwnd = Convert.ToInt32(args[1], 16);
-
-                int left = Convert.ToInt32(args[2], 10);
-                int right = Convert.ToInt32(args[3], 10);
-                int top = Convert.ToInt32(args[4], 10);
-                int bottom = Convert.ToInt32(args[5], 10);
 
                 Microsoft.UI.Xaml.Application.Start((p) =>
                 {

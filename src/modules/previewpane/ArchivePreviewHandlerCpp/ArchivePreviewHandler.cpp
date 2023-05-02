@@ -161,14 +161,6 @@ IFACEMETHODIMP ArchivePreviewHandler::DoPreview()
         ss << std::hex << m_hwndParent;
 
         cmdLine += ss.str();
-        cmdLine += L" ";
-        cmdLine += std::to_wstring(m_rcParent.left);
-        cmdLine += L" ";
-        cmdLine += std::to_wstring(m_rcParent.right);
-        cmdLine += L" ";
-        cmdLine += std::to_wstring(m_rcParent.top);
-        cmdLine += L" ";
-        cmdLine += std::to_wstring(m_rcParent.bottom);
         std::wstring appPath = get_module_folderpath(g_hInst) + L"\\PowerToys.ArchivePreviewHandler.exe";
 
         SHELLEXECUTEINFO sei{ sizeof(sei) };
