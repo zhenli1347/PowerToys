@@ -12,6 +12,8 @@ using ArchivePreviewHandler.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ManagedCommon;
 using SharpCompress.Archives;
+using SharpCompress.Common;
+using SharpCompress.Readers;
 using Windows.ApplicationModel.Resources;
 
 namespace ArchivePreviewHandler
@@ -50,58 +52,31 @@ namespace ArchivePreviewHandler
             try
             {
                 using var stream = File.OpenRead(filePath);
-                using var archive = ArchiveFactory.Open(stream);
 
-                _size = new FileInfo(filePath).Length; // archive.TotalSize isn't accurate
-                _extractedSize = archive.TotalUncompressSize;
-
-                foreach (var entry in archive.Entries)
+                if (filePath.EndsWith(".tar.gz", StringComparison.OrdinalIgnoreCase) || filePath.EndsWith(".tgz", StringComparison.OrdinalIgnoreCase))
                 {
-                    var levels = entry.Key.Split('/', '\\').Where(l => !string.IsNullOrWhiteSpace(l)).ToArray();
+                    using var archive = ArchiveFactory.Open(stream);
+                    _extractedSize = archive.TotalUncompressSize;
+                    stream.Seek(0, SeekOrigin.Begin);
 
-                    ArchiveItem parent = null;
-                    for (var i = 0; i < levels.Length; i++)
+                    using var reader = ReaderFactory.Open(stream);
+                    while (reader.MoveToNextEntry())
                     {
-                        var type = (!entry.IsDirectory && i == levels.Length - 1) ? ArchiveItemType.File : ArchiveItemType.Directory;
-                        var icon = type == ArchiveItemType.Directory ? _iconManager.GetDirectoryIcon() : _iconManager.GetFileIcon(entry.Key);
-                        var item = new ArchiveItem(levels[i], type, icon);
+                        AddEntry(reader.Entry);
+                    }
+                }
+                else
+                {
+                    using var archive = ArchiveFactory.Open(stream);
+                    _extractedSize = archive.TotalUncompressSize;
 
-                        if (type == ArchiveItemType.Directory)
-                        {
-                            item.IsExpanded = parent == null; // Only the root level is expanded
-                        }
-                        else if (type == ArchiveItemType.File)
-                        {
-                            item.Size = entry.Size;
-                        }
-
-                        if (parent == null)
-                        {
-                            var existing = Tree.FirstOrDefault(e => e.Name == item.Name);
-                            if (existing == null)
-                            {
-                                var index = GetIndex(Tree, item);
-                                Tree.Insert(index, item);
-                                CountItem(item);
-                            }
-
-                            parent = existing ?? Tree.First(e => e.Name == item.Name);
-                        }
-                        else
-                        {
-                            var existing = parent.Children.FirstOrDefault(e => e.Name == item.Name);
-                            if (existing == null)
-                            {
-                                var index = GetIndex(parent.Children, item);
-                                parent.Children.Insert(index, item);
-                                CountItem(item);
-                            }
-
-                            parent = existing ?? parent.Children.First(e => e.Name == item.Name);
-                        }
+                    foreach (var entry in archive.Entries)
+                    {
+                        AddEntry(entry);
                     }
                 }
 
+                _size = new FileInfo(filePath).Length; // archive.TotalSize isn't accurate
                 DirectoryText = string.Format(CultureInfo.CurrentCulture, ResourceLoader.GetForViewIndependentUse().GetString("Archive_Directory_Count"), _directoryCount);
                 FileText = string.Format(CultureInfo.CurrentCulture, ResourceLoader.GetForViewIndependentUse().GetString("Archive_File_Count"), _fileCount);
                 SizeText = string.Format(CultureInfo.CurrentCulture, ResourceLoader.GetForViewIndependentUse().GetString("Archive_Size"), SizeHelper.GetHumanSize(_size), SizeHelper.GetHumanSize(_extractedSize));
@@ -110,6 +85,53 @@ namespace ArchivePreviewHandler
             {
                 Logger.LogError("Preview failed", ex);
                 IsFailed = true;
+            }
+        }
+
+        private void AddEntry(IEntry entry)
+        {
+            var levels = entry?.Key.Split('/', '\\').Where(l => !string.IsNullOrWhiteSpace(l)).ToArray() ?? Array.Empty<string>();
+
+            ArchiveItem parent = null;
+            for (var i = 0; i < levels.Length; i++)
+            {
+                var type = (!entry.IsDirectory && i == levels.Length - 1) ? ArchiveItemType.File : ArchiveItemType.Directory;
+                var icon = type == ArchiveItemType.Directory ? _iconManager.GetDirectoryIcon() : _iconManager.GetFileIcon(entry.Key);
+                var item = new ArchiveItem(levels[i], type, icon);
+
+                if (type == ArchiveItemType.Directory)
+                {
+                    item.IsExpanded = parent == null; // Only the root level is expanded
+                }
+                else if (type == ArchiveItemType.File)
+                {
+                    item.Size = entry.Size;
+                }
+
+                if (parent == null)
+                {
+                    var existing = Tree.FirstOrDefault(e => e.Name == item.Name);
+                    if (existing == null)
+                    {
+                        var index = GetIndex(Tree, item);
+                        Tree.Insert(index, item);
+                        CountItem(item);
+                    }
+
+                    parent = existing ?? Tree.First(e => e.Name == item.Name);
+                }
+                else
+                {
+                    var existing = parent.Children.FirstOrDefault(e => e.Name == item.Name);
+                    if (existing == null)
+                    {
+                        var index = GetIndex(parent.Children, item);
+                        parent.Children.Insert(index, item);
+                        CountItem(item);
+                    }
+
+                    parent = existing ?? parent.Children.First(e => e.Name == item.Name);
+                }
             }
         }
 

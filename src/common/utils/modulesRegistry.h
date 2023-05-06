@@ -21,7 +21,7 @@ namespace NonLocalizable
     const static std::vector<std::wstring> ExtNoNoNo   = { 
         L".svgz" //Monaco cannot handle this file type at all; it's a binary file.
     };
-    const static std::vector<std::wstring> ExtArchive = { L".zip", L".rar", L".7z", L".tar", L".nupkg", L".jar" };
+    const static std::vector<std::wstring> ExtArchive = { L".zip", L".rar", L".7z", L".tar", L".nupkg", L".jar", L".gz", L".tar", L".tar.gz", L".tgz" };
 }
 
 inline registry::ChangeSet getSvgPreviewHandlerChangeSet(const std::wstring installationDir, const bool perUser)

@@ -105,6 +105,7 @@ AQS
 ARandom
 ARCHITEW
 archivepreviewhandler
+ARCHIVEPREVIEWHANDLERCPP
 arcosh
 ARemapped
 argb
