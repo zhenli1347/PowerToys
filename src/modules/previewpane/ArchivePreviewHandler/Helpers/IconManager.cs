@@ -35,18 +35,27 @@ namespace ArchivePreviewHandler.Helpers
             try
             {
                 var shFileInfo = default(SHFILEINFO);
-                _ = NativeMethods.SHGetFileInfo(fileName, NativeMethods.FILE_ATTRIBUTE_NORMAL, ref shFileInfo, (uint)Marshal.SizeOf(shFileInfo), NativeMethods.SHGFI_ICON | NativeMethods.SHGFI_SMALLICON | NativeMethods.SHGFI_USEFILEATTRIBUTES);
-                var icon = (Icon)Icon.FromHandle(shFileInfo.hIcon).Clone();
-                var bitmap = icon.ToBitmap();
-                var imageSource = BitmapHelper.BitmapToImageSource(bitmap);
-                _ = NativeMethods.DestroyIcon(shFileInfo.hIcon);
+                if (NativeMethods.SHGetFileInfo(fileName, NativeMethods.FILE_ATTRIBUTE_NORMAL, ref shFileInfo, (uint)Marshal.SizeOf(shFileInfo), NativeMethods.SHGFI_ICON | NativeMethods.SHGFI_SMALLICON | NativeMethods.SHGFI_USEFILEATTRIBUTES) != IntPtr.Zero)
+                {
+                    var icon = (Icon)Icon.FromHandle(shFileInfo.hIcon).Clone();
+                    var bitmap = icon.ToBitmap();
+                    var imageSource = BitmapHelper.BitmapToImageSource(bitmap);
+                    if (NativeMethods.DestroyIcon(shFileInfo.hIcon) == 0)
+                    {
+                        Logger.LogWarning($"Icon destruction failed with error {Marshal.GetLastWin32Error()}");
+                    }
 
-                _cache.Add(extension, imageSource);
-                return imageSource;
+                    _cache.Add(extension, imageSource);
+                    return imageSource;
+                }
+                else
+                {
+                    Logger.LogError($"Icon extraction for extension {extension} failed with error {Marshal.GetLastWin32Error()}");
+                }
             }
             catch (Exception ex)
             {
-                Logger.LogError($"Failed to retrieve icon for file extension {extension}", ex);
+                Logger.LogError($"Icon extraction for extension {extension} failed", ex);
             }
 
             return null;
@@ -62,18 +71,27 @@ namespace ArchivePreviewHandler.Helpers
             try
             {
                 var shinfo = default(SHFILEINFO);
-                _ = NativeMethods.SHGetFileInfo("directory", NativeMethods.FILE_ATTRIBUTE_DIRECTORY, ref shinfo, (uint)Marshal.SizeOf(shinfo), NativeMethods.SHGFI_ICON | NativeMethods.SHGFI_SMALLICON | NativeMethods.SHGFI_USEFILEATTRIBUTES);
-                var icon = (Icon)Icon.FromHandle(shinfo.hIcon).Clone();
-                var bmp = icon.ToBitmap();
-                var imageSource = BitmapHelper.BitmapToImageSource(bmp);
-                _ = NativeMethods.DestroyIcon(shinfo.hIcon);
+                if (NativeMethods.SHGetFileInfo("directory", NativeMethods.FILE_ATTRIBUTE_DIRECTORY, ref shinfo, (uint)Marshal.SizeOf(shinfo), NativeMethods.SHGFI_ICON | NativeMethods.SHGFI_SMALLICON | NativeMethods.SHGFI_USEFILEATTRIBUTES) != IntPtr.Zero)
+                {
+                    var icon = (Icon)Icon.FromHandle(shinfo.hIcon).Clone();
+                    var bmp = icon.ToBitmap();
+                    var imageSource = BitmapHelper.BitmapToImageSource(bmp);
+                    if (NativeMethods.DestroyIcon(shinfo.hIcon) == 0)
+                    {
+                        Logger.LogWarning($"Icon destruction failed with error {Marshal.GetLastWin32Error()}");
+                    }
 
-                _directoryIconCache = imageSource;
-                return imageSource;
+                    _directoryIconCache = imageSource;
+                    return imageSource;
+                }
+                else
+                {
+                    Logger.LogError($"Icon extraction for directory failed with error {Marshal.GetLastWin32Error()}");
+                }
             }
             catch (Exception ex)
             {
-                Logger.LogError($"Failed to retrieve icon for directory", ex);
+                Logger.LogError($"Icon extraction for directory failed", ex);
             }
 
             return null;

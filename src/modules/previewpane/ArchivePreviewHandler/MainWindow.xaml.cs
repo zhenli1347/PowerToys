@@ -3,7 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Runtime.InteropServices;
 using ArchivePreviewHandler.Helpers;
+using ManagedCommon;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -38,14 +40,25 @@ namespace ArchivePreviewHandler
             _parentWindowHandle = hwnd;
 
             // We must set the WS_CHILD style to change the form to a control within the Explorer preview pane
-            int windowStyle = NativeMethods.GetWindowLong(WindowNative.GetWindowHandle(this), NativeMethods.GWL_STYLE);
+            var windowStyle = NativeMethods.GetWindowLong(WindowNative.GetWindowHandle(this), NativeMethods.GWL_STYLE);
             if ((windowStyle & NativeMethods.WS_CHILD) == 0)
             {
-                _ = NativeMethods.SetWindowLong(WindowNative.GetWindowHandle(this), NativeMethods.GWL_STYLE, windowStyle | NativeMethods.WS_CHILD);
+                if (NativeMethods.SetWindowLong(WindowNative.GetWindowHandle(this), NativeMethods.GWL_STYLE, windowStyle | NativeMethods.WS_CHILD) == IntPtr.Zero)
+                {
+                    Logger.LogError($"SetWindowLong failed with error {Marshal.GetLastWin32Error()}");
+                    DispatcherQueue.TryEnqueue(App.Current.Exit);
+                }
             }
 
-            _ = NativeMethods.SetParent(WindowNative.GetWindowHandle(this), hwnd);
-            Resize();
+            if (NativeMethods.SetParent(WindowNative.GetWindowHandle(this), hwnd) == IntPtr.Zero)
+            {
+                Logger.LogError($"SetParent failed with error {Marshal.GetLastWin32Error()}");
+                DispatcherQueue.TryEnqueue(App.Current.Exit);
+            }
+            else
+            {
+                Resize();
+            }
         }
 
         public void Resize()
