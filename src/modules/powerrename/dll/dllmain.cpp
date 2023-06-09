@@ -200,6 +200,7 @@ public:
             if (!package::IsPackageRegistered(PowerRenameConstants::ModulePackageDisplayName))
             {
                 package::RegisterSparsePackage(path, packageUri);
+                SHChangeNotify(SHCNE_ALLEVENTS, SHCNF_IDLIST, NULL, NULL);
             }
         }
 
