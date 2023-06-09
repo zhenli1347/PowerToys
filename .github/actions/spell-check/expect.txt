@@ -1536,7 +1536,6 @@ pinfo
 pinvoke
 pipename
 PKBDLLHOOKSTRUCT
-PKEY
 pkey
 plib
 PLK
