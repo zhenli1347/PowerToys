@@ -5,6 +5,8 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using Common.ComInterlop;
 using Common.Utilities;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
@@ -187,15 +189,33 @@ namespace Microsoft.PowerToys.ThumbnailHandler.Svg
                 }
             });
 
-            while (thumbnailDone == false)
+            while (!thumbnailDone)
             {
                 Application.DoEvents();
+                WaitMessage();
             }
 
             _browser.Dispose();
 
             return thumbnail;
         }
+
+#pragma warning disable CA1401 // P/Invokes should not be visible
+        [DllImport(@"user32.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool WaitMessage();
+
+        [DllImport(@"user32.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool PeekMessage(ref MSG message, IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax, uint wRemoveMsg);
+
+        [DllImport(@"user32.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool GetMessage(ref MSG message, IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
+
+        [DllImport(@"user32.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool TranslateMessage(ref MSG message);
+
+        [DllImport(@"user32.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern long DispatchMessage(ref MSG message);
+#pragma warning restore CA1401 // P/Invokes should not be visible
 
         /// <summary>
         /// Wrap the SVG markup in HTML with a meta tag to render it
