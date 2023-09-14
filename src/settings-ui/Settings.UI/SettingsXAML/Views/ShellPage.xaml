@@ -86,6 +86,12 @@
             </NavigationView.Resources>
             <NavigationView.MenuItems>
                 <NavigationViewItem
+                    x:Uid="Shell_Dashboard"
+                    Content="Dashboard"
+                    helpers:NavHelper.NavigateTo="views:DashboardPage"
+                    Icon="{ui:BitmapIcon Source=/Assets/Settings/FluentIcons/FluentIconsSettings.png}" />
+
+                <NavigationViewItem
                     x:Uid="Shell_General"
                     helpers:NavHelper.NavigateTo="views:GeneralPage"
                     Icon="{ui:BitmapIcon Source=/Assets/Settings/FluentIcons/FluentIconsSettings.png}" />
