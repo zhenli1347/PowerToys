@@ -10,7 +10,6 @@
     xmlns:ui="using:CommunityToolkit.WinUI"
     AutomationProperties.LandmarkType="Main"
     mc:Ignorable="d">
-
     <Page.Resources>
         <localConverters:UpdateStateToBoolConverter x:Key="UpdateStateToBoolConverter" />
         <localConverters:StringToInfoBarSeverityConverter x:Key="StringToInfoBarSeverityConverter" />
