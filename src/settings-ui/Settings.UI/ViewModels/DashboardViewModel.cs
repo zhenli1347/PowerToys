@@ -445,7 +445,7 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
             ISettingsRepository<PowerOcrSettings> moduleSettingsRepository = SettingsRepository<PowerOcrSettings>.GetInstance(settingsUtils);
             var settings = moduleSettingsRepository.SettingsConfig;
             var hotkey = settings.Properties.ActivationShortcut;
-            list.Add(new DashboardModuleItem() { IsLabelVisible = true, Label = "Copy text from anywher on screen", IsShortcutVisible = true, Shortcut = hotkey });
+            list.Add(new DashboardModuleItem() { IsLabelVisible = true, Label = "Copy text from anywhere on screen", IsShortcutVisible = true, Shortcut = hotkey });
             return new ObservableCollection<DashboardModuleItem>(list);
         }
     }
