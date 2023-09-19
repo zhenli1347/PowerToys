@@ -60,7 +60,7 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
             }
         }
 
-        public HotkeySettings Shortcut { get; set; }
+        public List<object> Shortcut { get; set; }
 
         public string ButtonTitle { get; set; }
 
