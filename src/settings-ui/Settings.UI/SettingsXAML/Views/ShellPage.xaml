@@ -89,13 +89,13 @@
                     x:Uid="Shell_Dashboard"
                     Content="Dashboard"
                     helpers:NavHelper.NavigateTo="views:DashboardPage"
-                    Icon="{ui:BitmapIcon Source=/Assets/Settings/FluentIcons/FluentIconsSettings.png}" />
+                    Icon="{ui:FontIcon Glyph=&#xE80F;}" />
 
                 <NavigationViewItem
                     x:Uid="Shell_General"
                     helpers:NavHelper.NavigateTo="views:GeneralPage"
-                    Icon="{ui:BitmapIcon Source=/Assets/Settings/FluentIcons/FluentIconsSettings.png}" />
-
+                    Icon="{ui:FontIcon Glyph=&#xE713;}"/>
+                <NavigationViewItemSeparator/>
                 <NavigationViewItem
                     x:Uid="Shell_AlwaysOnTop"
                     helpers:NavHelper.NavigateTo="views:AlwaysOnTopPage"
