@@ -15,7 +15,7 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
 {
     public class DashboardModuleItem : INotifyPropertyChanged
     {
-        private bool _isLableVisible;
+        private bool _isLabelVisible;
         private bool _isShortcutVisible;
         private bool _isButtonVisible;
 
@@ -23,12 +23,12 @@ namespace Microsoft.PowerToys.Settings.UI.ViewModels
 
         public bool IsLabelVisible
         {
-            get => _isLableVisible;
+            get => _isLabelVisible;
             set
             {
-                if (_isLableVisible != value)
+                if (_isLabelVisible != value)
                 {
-                    _isLableVisible = value;
+                    _isLabelVisible = value;
                     OnPropertyChanged();
                 }
             }
